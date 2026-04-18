@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="blog-index">
+    <div class="hero-meta">Blog</div>
+    <div class="blog-index__heading">
+        <h1>Notas, ideas y proyectos.</h1>
+        <p>Inspo</p>
+    </div>
+
+    <div class="blog-grid">
+        {% for post in posts %}
+            <article class="blog-card">
+                <a class="blog-card__image-link" href="{% url 'blog:post_detail' post.id %}">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }} image">
+                </a>
+                <p class="blog-card__meta">{{ post.date }}</p>
+                <h2><a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a></h2>
+                <p>{{ post.content|truncatechars:220 }}</p>
+                <a class="blog-card__cta" href="{% url 'blog:post_detail' post.id %}">Leer post</a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

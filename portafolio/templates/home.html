@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+<section class="home-hero">
+    <div class="home-hero__media">
+        <img src="{% static 'images/profile-jonatan.jpeg' %}" alt="Foto de Jonatan Zuniga">
+    </div>
+
+    <div class="home-hero__content">
+        <div class="hero-meta">Portafolio</div>
+        <h1>Jonatan Zuniga</h1>
+        <h2>Desarrollador web enfocado en experiencias limpias, funcionales y visualmente cuidadas.</h2>
+        <p>
+            Me gusta crear proyectos con una presentacion profesional, una estructura clara y una experiencia
+            intuitiva para quien visita el sitio. Trabajo con Python, Django y desarrollo web buscando que cada
+            pagina se sienta pulida, moderna y bien construida.
+        </p>
+        <p>
+            Aqui puedes encontrar una seleccion de proyectos recientes, entrar al blog o descargar mi CV.
+        </p>
+
+        <div class="home-hero__actions">
+            <a class="primary-button" href="{% static 'cv/Jonatan_Zuniga_CV.pdf' %}" download>Descargar CV</a>
+            <a class="secondary-link" href="{% url 'blog:posts' %}">Ir al blog</a>
+        </div>
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="projects-section__intro">
+        <h2>Mis proyectos</h2>
+        <p>Una muestra de trabajos donde he explorado desarrollo web, diseno visual y construccion de interfaces.</p>
+    </div>
+
+    <div class="projects-grid">
+        {% for project in projects %}
+            <article class="project-card">
+                <img src="{{ project.image.url }}" alt="{{ project.title }} image">
+                <div class="project-card__body">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    {% if project.url %}
+                        <a class="project-card__link" href="{{ project.url }}" target="_blank" rel="noreferrer">Ver proyecto</a>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
