@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, MotionConfig, type Variants } from "framer-motion";
 import {
@@ -89,7 +90,15 @@ const experience = [
   }
 ];
 
-const projects = [
+type Project = {
+  title: string;
+  type: string;
+  description: string;
+  image: string;
+  url: string;
+};
+
+const fallbackProjects: Project[] = [
   {
     title: "Torteria",
     type: "Landing page",
@@ -176,6 +185,34 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
+  const [projects, setProjects] = useState<Project[]>(fallbackProjects);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadProjects() {
+      try {
+        const response = await fetch("/api/projects", { cache: "no-store" });
+        if (!response.ok) {
+          return;
+        }
+
+        const data = (await response.json()) as { projects?: Project[] };
+        if (isMounted && data.projects?.length) {
+          setProjects(data.projects);
+        }
+      } catch {
+        // Keep the local fallback projects when Django is not running.
+      }
+    }
+
+    loadProjects();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <MotionConfig reducedMotion="user">
       <main className="relative min-h-screen overflow-x-hidden bg-paper text-ink">
@@ -432,9 +469,9 @@ export default function Home() {
             {projects.map((project) => (
               <motion.article variants={fadeUp} key={project.title} className="group">
                 <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={project.url || "#proyectos"}
+                  target={project.url ? "_blank" : undefined}
+                  rel={project.url ? "noreferrer" : undefined}
                   className="block overflow-hidden rounded-[8px] border border-ink/10 bg-white/55 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(20,20,20,0.13)]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-mist">
