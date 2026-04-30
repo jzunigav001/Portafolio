@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
+{% comment %} Esta es la seccion principal de presentacion {% endcomment %}
 <section class="home-hero">
     <div class="home-hero__media">
-        <img src="{% static 'images/profile-jonatan.jpeg' %}" alt="Foto de Jonatan Zuniga">
+        <img src="/public/blog/images/Frank_Ocean_2022_Blonded.jpg" alt="Frank Ocean profile visual">
     </div>
 
     <div class="home-hero__content">
@@ -27,6 +28,7 @@
     </div>
 </section>
 
+{% comment %} Aqui se muestran los proyectos {% endcomment %}
 <section class="projects-section">
     <div class="projects-section__intro">
         <h2>Mis proyectos</h2>

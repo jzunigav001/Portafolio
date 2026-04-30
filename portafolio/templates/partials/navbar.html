@@ -1,9 +1,11 @@
 {% load static %}
 <div class="site-frame site-navbar-wrap">
+    {% comment %} Este es el menu principal {% endcomment %}
     <nav class="site-navbar" aria-label="Main navigation">
         <div class="site-navbar__links">
             <a class="site-navbar__pill" href="{% url 'home' %}">Inicio</a>
             <a class="site-navbar__pill" href="{% url 'blog:posts' %}">Blog</a>
+            {% comment %} Este boton descarga el CV {% endcomment %}
             <a class="site-navbar__pill site-navbar__pill--secondary" href="{% static 'cv/Jonatan_Zuniga_CV.pdf' %}" download>Descargar CV</a>
         </div>
     </nav>

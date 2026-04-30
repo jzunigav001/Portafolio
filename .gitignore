@@ -9,3 +9,6 @@ env/
 media/blog/images/test*
 media/blog/images/*.tmp
 staticfiles/
+node_modules/
+.next/
+.npm-cache/

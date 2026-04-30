@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio</title>
+    {% comment %} Aqui se agrega la hoja de estilo principal {% endcomment %}
     <link rel="stylesheet" href="{% static 'main.css' %}">
 </head>
 <body>
+    {% comment %} Aqui se inserta el navbar {% endcomment %}
     {% include 'partials/navbar.html' %}
 
     <main class="page-shell">
+        {% comment %} Aqui entra el contenido de cada pagina {% endcomment %}
         {% block content %}
         
         {% endblock %}
