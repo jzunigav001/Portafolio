@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Jonatan Zuniga | Portfolio",
   description:
-    "Portfolio de Jonatan Zuniga, desarrollador web enfocado en interfaces oscuras, proyectos pulidos y experiencias digitales."
+    "Portfolio de Jonatan Zuniga, desarrollador web enfocado en interfaces limpias, proyectos publicados y experiencias digitales."
 };
 
 export default function RootLayout({

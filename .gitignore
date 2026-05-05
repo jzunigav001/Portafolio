@@ -1,14 +1,18 @@
+# System files
 .DS_Store
-__pycache__/
-*.py[cod]
-*.sqlite3
-db.sqlite3
-venv/
-.venv/
-env/
-media/blog/images/test*
-media/blog/images/*.tmp
-staticfiles/
+
+# Dependencies
 node_modules/
+
+# Next.js
 .next/
+out/
+
+# Local environment
+.env*.local
+.vercel/
 .npm-cache/
+
+# Editor files
+.vscode/
+.idea/
