@@ -10,7 +10,7 @@ type SkillsSectionProps = {
 
 export function SkillsSection({ stack, certifications }: SkillsSectionProps) {
   return (
-    <section className="relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <section className="section-rail relative z-10 mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <Reveal className="grid gap-8 border-y border-ink/10 py-10 lg:grid-cols-[0.72fr_1.28fr]">
         <div>
           <SectionLabel>Habilidades</SectionLabel>
@@ -23,7 +23,7 @@ export function SkillsSection({ stack, certifications }: SkillsSectionProps) {
             {stack.map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-ink/15 bg-white/50 px-4 py-2 text-sm font-bold text-ink"
+                className="skill-pill rounded-full border border-ink/15 bg-white/50 px-4 py-2 text-sm font-bold text-ink"
               >
                 {item}
               </span>

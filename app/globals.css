@@ -43,6 +43,7 @@ a {
     linear-gradient(90deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px);
   background-size: 74px 74px;
   mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
+  animation: gridDrift 18s linear infinite;
 }
 
 .display-title {
@@ -60,6 +61,7 @@ a {
     linear-gradient(rgba(17, 17, 17, 0.025) 1px, transparent 1px);
   background-size: 7.5rem 7.5rem;
   opacity: 0.45;
+  animation: stageGrid 22s linear infinite;
 }
 
 .editorial-stage::after {
@@ -75,6 +77,7 @@ a {
 
 .portrait-float {
   filter: drop-shadow(0 26px 34px rgba(17, 17, 17, 0.18));
+  animation: portraitFloat 8s ease-in-out infinite;
 }
 
 .portrait-crop {
@@ -83,6 +86,8 @@ a {
 }
 
 .portfolio-panel {
+  position: relative;
+  overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 8px;
   background:
@@ -92,12 +97,81 @@ a {
     0 22px 70px rgba(20, 20, 20, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(18px);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.portfolio-panel::before,
+.project-card::before,
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(255, 255, 255, 0.42) 48%,
+    transparent 58%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateX(-45%);
+  transition:
+    opacity 220ms ease,
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portfolio-panel:hover,
+.project-card:hover {
+  border-color: rgba(17, 17, 17, 0.22);
+  box-shadow:
+    0 26px 80px rgba(20, 20, 20, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  transform: translateY(-3px);
+}
+
+.portfolio-panel:hover::before,
+.project-card:hover::before,
+.contact-card:hover::before {
+  opacity: 1;
+  transform: translateX(45%);
 }
 
 .glass-line {
+  position: relative;
+  overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.12);
   background: rgba(255, 255, 255, 0.42);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.glass-line::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: #111111;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+}
+
+.glass-line:hover {
+  border-color: rgba(17, 17, 17, 0.24);
+  background: rgba(255, 255, 255, 0.62);
+  transform: translateY(-2px);
+}
+
+.glass-line:hover::after {
+  transform: scaleX(1);
 }
 
 .contact-link {
@@ -118,6 +192,10 @@ a {
     transform 180ms ease;
 }
 
+.contact-link svg:last-child {
+  transition: transform 180ms ease;
+}
+
 .contact-link span {
   min-width: 0;
 }
@@ -134,12 +212,149 @@ nextjs-portal,
   transform: translateY(-2px);
 }
 
+.contact-link:hover svg:last-child {
+  transform: translate(2px, -2px);
+}
+
 .marquee {
   mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
 }
 
 .marquee-track {
   animation: marqueeMove 28s linear infinite;
+}
+
+.reverse-marquee-track {
+  animation: reverseMarqueeMove 34s linear infinite;
+}
+
+.hero-signal {
+  position: absolute;
+  inset: auto 1.25rem 1.25rem 1.25rem;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.35rem;
+  pointer-events: none;
+}
+
+.hero-signal span {
+  height: 2px;
+  background: rgba(17, 17, 17, 0.26);
+  transform-origin: left;
+  animation: signalPulse 2.8s ease-in-out infinite;
+}
+
+.hero-signal span:nth-child(2n) {
+  animation-delay: 180ms;
+}
+
+.hero-signal span:nth-child(3n) {
+  animation-delay: 340ms;
+}
+
+.hero-signal span:nth-child(4n) {
+  animation-delay: 520ms;
+}
+
+.section-rail {
+  position: relative;
+}
+
+.section-rail::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(17, 17, 17, 0.34), transparent);
+  transform: scaleX(0.24);
+  opacity: 0.7;
+  animation: railSweep 6s ease-in-out infinite;
+}
+
+.skill-pill {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.skill-pill:hover {
+  border-color: #111111;
+  background: #111111;
+  color: #f7f6f2;
+  transform: translateY(-2px);
+}
+
+.experience-row {
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: #111111;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 260ms ease;
+}
+
+.experience-row:hover::before {
+  transform: scaleY(1);
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.055);
+}
+
+.project-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 68%, rgba(17, 17, 17, 0.16)),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 16px,
+      rgba(255, 255, 255, 0.11) 17px,
+      transparent 18px
+    );
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.project-card:hover .project-media::after {
+  opacity: 1;
+}
+
+.contact-card {
+  position: relative;
+}
+
+.contact-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(247, 246, 242, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(247, 246, 242, 0.07) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+  opacity: 0.18;
+  animation: contactGrid 16s linear infinite;
 }
 
 @keyframes marqueeMove {
@@ -149,6 +364,81 @@ nextjs-portal,
 
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes reverseMarqueeMove {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes gridDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 74px 74px;
+  }
+}
+
+@keyframes stageGrid {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 7.5rem 7.5rem;
+  }
+}
+
+@keyframes portraitFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+@keyframes signalPulse {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: scaleX(0.35);
+  }
+
+  45% {
+    opacity: 0.86;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes railSweep {
+  0%,
+  100% {
+    transform: scaleX(0.18);
+  }
+
+  50% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes contactGrid {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 4.5rem 4.5rem;
   }
 }
 
@@ -165,6 +455,10 @@ nextjs-portal,
   .contact-link {
     padding: 0.85rem 0.9rem;
     font-size: 0.9rem;
+  }
+
+  .hero-signal {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 

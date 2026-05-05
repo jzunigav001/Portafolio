@@ -12,6 +12,14 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ siteInfo, stack }: HeroSectionProps) {
+  const workflow = [
+    "Diseno claro",
+    "Codigo ordenado",
+    "Publicacion web",
+    "Interfaces responsivas",
+    "Mejora continua"
+  ];
+
   return (
     <section
       id="inicio"
@@ -66,12 +74,12 @@ export function HeroSection({ siteInfo, stack }: HeroSectionProps) {
           <motion.div variants={softScale}>
             <div className="portrait-crop relative aspect-[4/5] overflow-hidden bg-transparent">
               <Image
-                src="/assets/profile.jpg"
+                src="/assets/profile-cutout.png"
                 alt="Retrato de Jonatan Zuniga"
                 fill
                 priority
                 sizes="(max-width: 1024px) 72vw, 500px"
-                className="scale-125 object-cover object-[50%_18%] grayscale contrast-150 brightness-110 mix-blend-multiply"
+                className="scale-110 object-cover object-center grayscale contrast-125 brightness-105 mix-blend-multiply"
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_68%,#fbfaf6_98%)]" />
             </div>
@@ -97,6 +105,12 @@ export function HeroSection({ siteInfo, stack }: HeroSectionProps) {
         >
           01 / 05
         </motion.div>
+
+        <div className="hero-signal" aria-hidden="true">
+          {Array.from({ length: 12 }, (_, index) => (
+            <span key={index} />
+          ))}
+        </div>
       </motion.div>
 
       <motion.div
@@ -108,6 +122,20 @@ export function HeroSection({ siteInfo, stack }: HeroSectionProps) {
       >
         <div className="marquee-track flex w-max gap-8 text-sm font-bold uppercase text-muted">
           {[...stack, ...stack].map((item, index) => (
+            <span key={`${item}-${index}`}>{item}</span>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        aria-hidden="true"
+        className="marquee mt-3 overflow-hidden border-b border-ink/10 py-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.55, duration: 0.8 }}
+      >
+        <div className="reverse-marquee-track flex w-max gap-8 text-xs font-black uppercase text-ink/70">
+          {[...workflow, ...workflow, ...workflow].map((item, index) => (
             <span key={`${item}-${index}`}>{item}</span>
           ))}
         </div>

@@ -12,7 +12,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
   return (
     <section
       id="experiencia"
-      className="relative z-10 mx-auto grid w-full max-w-7xl scroll-mt-24 gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8"
+      className="section-rail relative z-10 mx-auto grid w-full max-w-7xl scroll-mt-24 gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8"
     >
       <Reveal>
         <SectionLabel>Experiencia</SectionLabel>
@@ -32,7 +32,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
           <motion.article
             variants={fadeUp}
             key={`${item.role}-${item.place}`}
-            className="group grid gap-4 border-b border-ink/10 py-6 transition hover:bg-white/45 sm:grid-cols-[0.62fr_1.38fr]"
+            className="experience-row group grid gap-4 border-b border-ink/10 py-6 pl-4 transition hover:bg-white/45 sm:grid-cols-[0.62fr_1.38fr]"
           >
             <div>
               <p className="text-xs font-bold uppercase text-muted">{item.date}</p>

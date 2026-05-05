@@ -13,7 +13,7 @@ export function ProfileSection({ notes, stats }: ProfileSectionProps) {
   return (
     <section
       id="perfil"
-      className="relative z-10 mx-auto grid w-full max-w-7xl scroll-mt-24 gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8"
+      className="section-rail relative z-10 mx-auto grid w-full max-w-7xl scroll-mt-24 gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8"
     >
       <Reveal>
         <SectionLabel>Perfil</SectionLabel>

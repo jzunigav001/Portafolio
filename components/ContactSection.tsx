@@ -12,10 +12,10 @@ export function ContactSection({ siteInfo }: ContactSectionProps) {
   return (
     <section
       id="contacto"
-      className="relative z-10 mx-auto w-full max-w-7xl scroll-mt-24 px-4 py-20 sm:px-6 lg:px-8"
+      className="section-rail relative z-10 mx-auto w-full max-w-7xl scroll-mt-24 px-4 py-20 sm:px-6 lg:px-8"
     >
-      <Reveal className="grid min-h-[420px] overflow-hidden rounded-[8px] bg-ink p-5 text-paper sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
-        <div className="flex min-w-0 flex-col justify-between gap-8">
+      <Reveal className="contact-card grid min-h-[420px] overflow-hidden rounded-[8px] bg-ink p-5 text-paper sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="relative z-10 flex min-w-0 flex-col justify-between gap-8">
           <div>
             <p className="text-sm font-bold uppercase text-paper/55">
               Disponible para colaborar
@@ -30,7 +30,7 @@ export function ContactSection({ siteInfo }: ContactSectionProps) {
           </p>
         </div>
 
-        <div className="mt-8 grid min-w-0 content-end gap-3 lg:mt-0">
+        <div className="relative z-10 mt-8 grid min-w-0 content-end gap-3 lg:mt-0">
           <a href={siteInfo.emailHref} className="contact-link">
             <span className="flex items-center gap-3">
               <Mail className="h-4 w-4" aria-hidden="true" />
